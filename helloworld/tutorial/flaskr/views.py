@@ -17,3 +17,8 @@ def add_entry():
     db.session.commit()
     flash('New entry was syccessfully posted')
     return redirect(url_for('show_entries'))
+
+@app.route('/user/create/', methods=['GET', 'POST'])
+def user_create():
+    if request.method == 'POST':
+        user = User(name=request.form)
