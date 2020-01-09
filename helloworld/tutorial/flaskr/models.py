@@ -21,14 +21,14 @@ class User(db.Model):
     password = synonym('_password', descriptor=password_descriptor)
 
     def check_password(self, password):
-        password = password.strio()
+        password = password.strip()
         if not password:
             return False
         return check_password_hash(self.password, password)
 
     @classmethod
     def authenticate(cls, query, email, password):
-        user = query(cks).fillter(cls.email==email).first()
+        user = query(cls).filter(cls.email==email).first()
         if user is None:
             return None, False
         return user, user.check_password(password)
