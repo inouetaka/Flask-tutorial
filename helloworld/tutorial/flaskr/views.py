@@ -108,4 +108,3 @@ def logout():
     session.pop('user_id', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
-
